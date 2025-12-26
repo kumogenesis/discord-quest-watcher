@@ -23,7 +23,7 @@ func main() {
 			if minutes, err := strconv.Atoi(value); err == nil && minutes > 0 {
 				return minutes
 			}
-			log.Printf("invalid FETCH_INTERVAL=%s, using default 30", value)
+			log.Printf("❌ Invalid FETCH_INTERVAL=%s, using default 30", value)
 		}
 		return 30
 	}()
@@ -31,33 +31,33 @@ func main() {
 	runOnce := os.Getenv("RUN_ONCE") == "true"
 
 	if token == "" || webhook == "" {
-		log.Fatal("TOKEN and DISCORD_WEBHOOK_URL required")
+		log.Fatal("⚠️ TOKEN and DISCORD_WEBHOOK_URL required")
 	}
 
-	log.Printf("starting Discord quest monitor with reward_filter=%s, check_interval=%d minutes, run_once=%t", rewardFilter, checkInterval, runOnce)
+	log.Printf("🏁 Starting Discord quest monitor with reward_filter=%s, check_interval=%d minutes, run_once=%t", rewardFilter, checkInterval, runOnce)
 
 	// create browser and authenticate once
 	br, err := browser.CreateBrowser()
 	if err != nil {
-		log.Fatalf("failed to create browser: %v", err)
+		log.Fatalf("❌ Failed to create browser: %v", err)
 	}
 	defer br.MustClose()
 
 	if err := browser.AuthenticateWithToken(br, token); err != nil {
-		log.Fatalf("failed to authenticate: %v", err)
+		log.Fatalf("❌ Failed to authenticate: %v", err)
 	}
 
 	for {
-		log.Println("checking for new quests")
+		log.Println("🔍 Checking for new quests")
 		if err := quests.CheckQuests(br, webhook, rewardFilter, runOnce); err != nil {
-			log.Printf("quest check failed: %v", err)
+			log.Printf("❌ Quest check failed: %v", err)
 			if runOnce {
 				os.Exit(1)
 			}
 		}
 
 		if runOnce {
-			log.Println("check complete, exiting")
+			log.Println("✔ Check complete, exiting 🔚")
 			break
 		}
 		time.Sleep(time.Duration(checkInterval) * time.Minute)
