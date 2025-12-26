@@ -41,7 +41,7 @@ func contains(quests []types.Quest, id string) bool {
 func CheckQuests(browser *rod.Browser, webhookURL, rewardFilter string, runOnce bool) error {
 
 	allQuests, _ := extractQuests(browser)
-	log.Printf("extracted quests: count=%d", len(allQuests))
+	log.Printf("😲 Extracted quests: count=%d", len(allQuests))
 
 	// in RUN_ONCE mode, fail if no quests found (likely means page structure changed)
 	if runOnce && len(allQuests) == 0 {
@@ -53,23 +53,23 @@ func CheckQuests(browser *rod.Browser, webhookURL, rewardFilter string, runOnce 
 	if rewardFilter == "orbs" {
 		wantedQuests = filterQuests(allQuests, func(q types.Quest) bool { return q.RewardType == "orbs" })
 	}
-	log.Printf("filtered quests: count=%d filter=%s", len(wantedQuests), rewardFilter)
+	log.Printf("📮 Filtered quests: count=%d filter=%s", len(wantedQuests), rewardFilter)
 
 	// find which ones are actually new
 	previousQuests := questStorage(nil)
 	newQuests := filterQuests(wantedQuests, func(current types.Quest) bool {
 		return !contains(previousQuests, current.ID)
 	})
-	log.Printf("new quests: count=%d", len(newQuests))
+	log.Printf("🆕 New quests: count=%d", len(newQuests))
 
 	// notify about new ones
 	if len(newQuests) > 0 {
-		log.Printf("sending notifications: count=%d", len(newQuests))
+		log.Printf("📰 Sending notifications: count=%d", len(newQuests))
 		webhook.Send(webhookURL, newQuests)
 	}
 
 	// remember what we found
-	log.Printf("saving quests: count=%d", len(wantedQuests))
+	log.Printf("🗳️ Saving quests: count=%d", len(wantedQuests))
 	questStorage(wantedQuests)
 	return nil
 }
