@@ -38,11 +38,11 @@ func AuthenticateWithToken(browser *rod.Browser, token string) error {
 	// wait for redirect
 	for range 30 {
 		if !strings.Contains(page.MustInfo().URL, "/login") {
-			log.Println("authenticated successfully")
+			log.Println("✔ Authenticated successfully")
 			return nil
 		}
 		time.Sleep(time.Second)
 	}
 
-	return fmt.Errorf("authentication timeout")
+	return fmt.Errorf("⚠ Authentication timeout")
 }
