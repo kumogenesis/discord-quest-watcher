@@ -40,6 +40,6 @@ func Send(webhook string, quests []types.Quest) {
 			}
 		}
 
-		log.Printf("sent notification for quest: %s", quest.Name)
+		log.Printf("📩 Sent notification for quest: %s", quest.Name)
 	}
 }
