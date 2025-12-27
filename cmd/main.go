@@ -31,7 +31,7 @@ func main() {
 	runOnce := os.Getenv("RUN_ONCE") == "true"
 
 	if token == "" || webhook == "" {
-		log.Fatal("⚠️ TOKEN and DISCORD_WEBHOOK_URL required")
+		log.Fatal("🚫 TOKEN and DISCORD_WEBHOOK_URL required")
 	}
 
 	log.Printf("🏁 Starting Discord quest monitor with reward_filter=%s, check_interval=%d minutes, run_once=%t", rewardFilter, checkInterval, runOnce)
