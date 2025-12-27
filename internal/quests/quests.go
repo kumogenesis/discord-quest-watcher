@@ -14,7 +14,7 @@ import (
 	"github.com/go-rod/rod"
 )
 
-var ErrNoQuestsFound = errors.New("no quests found - page structure may have changed")
+var ErrNoQuestsFound = errors.New("❌ No quests found - page structure may have changed")
 
 //go:embed extract-quests.js
 var extractQuestsScript string
