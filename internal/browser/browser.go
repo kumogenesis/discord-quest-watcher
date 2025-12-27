@@ -44,5 +44,5 @@ func AuthenticateWithToken(browser *rod.Browser, token string) error {
 		time.Sleep(time.Second)
 	}
 
-	return fmt.Errorf("⚠ Authentication timeout")
+	return fmt.Errorf("🚫 Authentication timeout")
 }
