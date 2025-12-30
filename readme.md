@@ -3,10 +3,15 @@
 <img width="400" height="248" alt="image" src="https://github.com/user-attachments/assets/3771e972-9898-450a-b1c5-32aff759fbc8" />
 
 Nhận thông báo khi có nhiệm vụ Discord mới được phát hành. Lọc theo nhiệm vụ nhận Orb hoặc theo dõi tất cả các loại nhiệm vụ. Ứng dụng Go tối giản, chỉ cần một phụ thuộc duy nhất, đăng nhập đáng tin cậy thông qua mã thông báo người dùng, bỏ qua captcha và giới hạn tốc độ. Hoàn toàn tự lưu trữ và riêng tư. 
-> Tại sao? 
+
+> Tại sao?
+
 Tôi không tìm thấy công cụ nào hiện có thể thông báo cho tôi một cách đáng tin cậy khi có nhiệm vụ Orb mới, vì vậy tôi đã tạo ra công cụ nhỏ này trong một buổi tối. 
-> Nhưng tại sao người ta lại quan tâm đến những nhiệm vụ đó ngay từ đầu? 
-Nhiệm vụ cho Orb -> Orb cho những vật phẩm lấp lánh miễn phí. Không, nhưng nghiêm túc mà nói, tôi thích vẻ ngoài của một số vật phẩm trang trí người dùng Discord, nhưng tôi sẽ không bao giờ trả tiền cho nó. À mà nhân tiện, bạn không cần phải *hoàn thành* nhiệm vụ đâu, đoạn mã này sẽ làm điều đó thay bạn: https://gist.github.com/aamiaa/204cd9d42013ded9faf646fae7f89fbb Hoặc bạn có thể dùng plugin vencord/equicord/hoặc sử dụng Questor Bot (Có thể search trên mạng để vào server Discord)phổ biến hiện nay.
+
+> Nhưng tại sao người ta lại quan tâm đến những nhiệm vụ đó ngay từ đầu?
+
+Nhiệm vụ cho Orb -> Orb cho những vật phẩm lấp lánh miễn phí. Không, nhưng nghiêm túc mà nói, tôi thích vẻ ngoài của một số vật phẩm trang trí người dùng Discord, nhưng tôi sẽ không bao giờ trả tiền cho nó. À mà nhân tiện, bạn không cần phải *hoàn thành* nhiệm vụ đâu, đoạn mã này sẽ làm điều đó thay bạn: https://gist.github.com/aamiaa/204cd9d42013ded9faf646fae7f89fbb 
+Hoặc bạn có thể dùng plugin vencord/equicord/hoặc sử dụng Questor Bot (Có thể search trên mạng để vào server Discord)phổ biến hiện nay.
 
 ## Biến môi trường hoạt động
 
@@ -33,15 +38,10 @@ WEBHOOK_MESSAGE=<@&`1234567890123456789`>
 
 > [!CẢNH BÁO] > Ứng dụng này sử dụng mã thông báo người dùng của bạn, về mặt kỹ thuật, điều này vi phạm Điều khoản dịch vụ của Discord, vì vậy hãy sử dụng với rủi ro của riêng bạn. [Cách lấy mã thông báo người dùng của bạn](https://gist.github.com/MarvNC/e601f3603df22f36ebd3102c501116c6#file-get-discord-token-from-browser-md)
 
+> Hoặc bạn sử dụng JavaScript ở dưới để copy Tok3n Acc0unt Acce55
+
 ```shell
-docker run -d \
-           --name discord-quest-watcher \
-           --restart=unless-stopped \
-           -e TOKEN=your-token \
-           -e DISCORD_WEBHOOK_URL=your-webhook-url \
-           -e REWARD_FILTER=orbs \
-           -e WEBHOOK_MESSAGE=<@&role-id> \
-           ghcr.io/xhos/discord-quest-watcher:latest
+javascript:(function(){try{let f=document.createElement('iframe');document.body.appendChild(f);let t=JSON.parse(f.contentWindow.localStorage.token);let ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();let n=document.createElement('div');n.innerHTML='<strong>Kumo™ UI</strong><br>Your Acc0unt T0k3n Has Copied Successfully';n.style.cssText='position:fixed;top:20px;left:20px;background:#001f3f;color:#7FDBFF;padding:12px 16px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.4);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;font-size:14px;z-index:99999;opacity:0;transition:opacity 0.3s ease-in-out;';document.body.appendChild(n);setTimeout(()=>{n.style.opacity='1';},50);setTimeout(()=>{n.style.opacity='0';setTimeout(()=>n.remove(),500);},3500);}catch(e){alert('Error copying token');}})(); 
 ```
 
 ## Cách hoạt động 
