@@ -1,5 +1,5 @@
 const quests = [];
-document.querySelectorAll('[id^="quest-tile-"]').forEach(tile => {
+document.querySelectorAll('[id^="quest-tile"]''.forEach(tile => {
 	const name = tile.querySelector('[class*="questName"]')?.textContent?.trim();
 	const reward = tile.querySelector('[class*="header"]')?.textContent?.replace('Claim ', '')?.trim();
 	const allText = tile.textContent;
